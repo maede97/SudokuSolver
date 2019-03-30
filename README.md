@@ -1,2 +1,2 @@
 # SudokuSolver
-Solve sudokus with cpp
+Solve Sudokus fast with c++.

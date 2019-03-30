@@ -1,0 +1,5 @@
+#ifndef SUDOKU_READ_FILE_HPP
+#define SUDOKU_READ_FILE_HPP
+
+
+#endif /* SUDOKU_READ_FILE_HPP */
