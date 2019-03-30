@@ -10,11 +10,22 @@
  */
 namespace Sudoku {
 
+using SudokuMatrix = Eigen::Matrix<short, 9, 9>;
+using idx_t = short;
+using val_t = short;
+
 /**
  * @brief Internal Sudoku representation
  */
 class Sudoku {
+public:
+    /// @brief Generate empty sudoku
+    Sudoku() {
+        _matrix = SudokuMatrix::Zero();
+    }
 
+private:
+    SudokuMatrix _matrix;
 };
 
 } /* namespace Sudoku */
