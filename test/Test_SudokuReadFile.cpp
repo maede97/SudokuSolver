@@ -5,12 +5,7 @@
 
 int main(int argc, char const *argv[])
 {
-    Sudoku::Sudoku s;
-    s.addEntry(0, 0, 3);
-    s.addEntry(1, 5, 3);
-    s.addEntry(2, 1, 4);
-
+    Sudoku::Sudoku s = Sudoku::IO::generateFromFile("../test/examples/sudoku1.txt");
     std::cout << s << std::endl;
-
     return 0;
 }

@@ -10,7 +10,10 @@ link_directories(
 )
 
 set(TESTS
-    SudokuBase)
+    SudokuBase
+    SudokuReadFile
+    SudokuBruteForce
+  )
 
 foreach(TEST_NAME ${TESTS})
     add_executable(${TEST_NAME} Test_${TEST_NAME}.cpp)
