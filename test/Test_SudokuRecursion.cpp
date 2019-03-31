@@ -7,7 +7,7 @@
 int main(int argc, char const *argv[])
 {
     Sudoku::Sudoku s = Sudoku::IO::generateFromFile("../test/examples/sudoku1.txt");
-    Sudoku::Solver::BruteForce solver(s);
+    Sudoku::Solver::Recursion solver(s);
     std::cout << solver.solve() << std::endl;
     return 0;
 }

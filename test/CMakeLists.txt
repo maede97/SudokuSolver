@@ -13,6 +13,7 @@ set(TESTS
     SudokuBase
     SudokuReadFile
     SudokuBruteForce
+    SudokuRecursion
   )
 
 foreach(TEST_NAME ${TESTS})

@@ -27,13 +27,13 @@ class BaseSolver
     /**
      * Solve the given Sudoku
      */
-    virtual void solve() = 0;
+    virtual Sudoku solve() = 0;
     /**
      * Returns the solved Sudoku
      */
     Sudoku getSudoku() const { return _sudoku; }
 
-  private:
+  protected:
     Sudoku _sudoku;
 };
 

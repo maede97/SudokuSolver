@@ -14,20 +14,47 @@ namespace Solver
 /**
  * \brief %BruteForce approach
  */
-class BruteForce : public BaseSolver
+class BruteForce : protected BaseSolver
 {
-  public:
-    BruteForce() : BaseSolver()
-    {
-    }
+public:
+  BruteForce() : BaseSolver()
+  {
+  }
 
-    BruteForce(Sudoku s) : BaseSolver(s)
-    {
-    }
+  BruteForce(Sudoku s) : BaseSolver(s)
+  {
+  }
 
-    void solve()
+  Sudoku solve()
+  {
+    fillTrivial();
+    return _sudoku;
+  }
+
+private:
+  void fillTrivial()
+  {
+    for (idx_t row = 0; row < 9; row++)
     {
+      for (idx_t col = 0; col < 9; col++)
+      {
+        Block_t block = _sudoku.getBlockForEntry(row, col);
+        idx_t empty = countEmpty(_sudoku.getData());
+        switch (empty)
+        {
+        case 0:
+          break;
+        case 1:
+        {
+          // only one to fill
+          break;
+        }
+        default:
+          break;
+        }
+      }
     }
+  }
 };
 
 } /* namespace Solver */
