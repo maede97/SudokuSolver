@@ -3,7 +3,6 @@
 
 #include "BaseSolver.hpp"
 #include "../base/SudokuBase.hpp"
-#include <iostream>
 
 namespace Sudoku
 {
