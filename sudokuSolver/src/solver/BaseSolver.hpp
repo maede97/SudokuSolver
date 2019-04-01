@@ -17,24 +17,24 @@ namespace Solver
  */
 class BaseSolver
 {
-  public:
-    BaseSolver() = default;
-    /**
+public:
+  BaseSolver() = default;
+  /**
      * Initialise using a Sudoku
      */
-    BaseSolver(Sudoku s) : _sudoku(s) {}
-    ~BaseSolver() = default;
-    /**
+  BaseSolver(Sudoku s);
+  ~BaseSolver() = default;
+  /**
      * Solve the given Sudoku
      */
-    virtual Sudoku solve() = 0;
-    /**
+  virtual Sudoku solve() = 0;
+  /**
      * Returns the solved Sudoku
      */
-    Sudoku getSudoku() const { return _sudoku; }
+  Sudoku getSudoku() const;
 
-  protected:
-    Sudoku _sudoku;
+protected:
+  Sudoku _sudoku;
 };
 
 } /* namespace Solver */

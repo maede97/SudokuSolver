@@ -10,12 +10,13 @@ link_directories(
 )
 
 set(TESTS
-    SudokuBase
-    SudokuReadFile
-    SudokuRecursion
+    SudokuBaseTest
+    SudokuReadFileTest
+    SudokuRecursionTest
   )
 
 foreach(TEST_NAME ${TESTS})
     add_executable(${TEST_NAME} Test_${TEST_NAME}.cpp)
     add_test(${TEST_NAME} ${TEST_NAME})
+    target_link_libraries(${TEST_NAME} Sudoku)
   endforeach()

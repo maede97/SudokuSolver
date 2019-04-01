@@ -22,60 +22,19 @@ public:
   /**
  * @brief Initialize with given Sudoku
  */
-  RecursionSolver(Sudoku s) : BaseSolver(s)
-  {
-  }
-  Sudoku solve()
-  {
-    SolveRecursively();
-    return _sudoku;
-  }
+  RecursionSolver(Sudoku s);
+  Sudoku solve();
 
 private:
   /**
    * @brief Solve Sudoku recursively
    */
-  bool SolveRecursively()
-  {
-    idx_t row = 0;
-    idx_t col = 0;
-    if (!FindUnassignedLocation(row, col))
-    {
-      return true;
-    }
-    for (idx_t num = 1; num <= 9; num++)
-    {
-      if (_sudoku.checkValidity(row, col, num))
-      {
-        _sudoku.addEntry(row, col, num);
-        if (SolveRecursively())
-          return true;
-        _sudoku.removeEntry(row, col);
-      }
-    }
-    return false;
-  }
+  bool SolveRecursively();
+
   /**
    * @brief Find a location with no value
    */
-  bool FindUnassignedLocation(idx_t &row, idx_t &col)
-  {
-    // find empty location, set to row and col
-    // return true if location found, else false
-    for (idx_t i = 0; i < 9; i++)
-    {
-      for (idx_t j = 0; j < 9; j++)
-      {
-        if (!_sudoku.hasEntry(i, j))
-        {
-          row = i;
-          col = j;
-          return true;
-        }
-      }
-    }
-    return false;
-  }
+  bool FindUnassignedLocation(idx_t &row, idx_t &col);
 }; /* class RecursionSolver */
 
 } /* namespace Solver */

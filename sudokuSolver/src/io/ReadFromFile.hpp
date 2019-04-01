@@ -3,7 +3,6 @@
 
 #include "../base/SudokuBase.hpp"
 #include <fstream>
-#include <stdexcept>
 
 namespace Sudoku
 {
@@ -12,35 +11,16 @@ namespace Sudoku
  */
 namespace IO
 {
+
+/**
+ * @brief Contains all functions for reading files
+ */
+
 /// @brief Generate Sudoku from given stream
-Sudoku generateFromStream(std::istream &stream)
-{
-    Sudoku s;
-    val_t value;
-    for (idx_t i = 0; i < 9; i++)
-    {
-        for (idx_t j = 0; j < 9; j++)
-        {
-            stream >> value;
-            if (value != 0)
-            {
-                s.addEntry(i, j, value);
-            }
-        }
-    }
-    return s;
-}
+Sudoku readStream(std::istream &stream);
 
 /// @brief Generate Sudoku from File
-Sudoku generateFromFile(const char *filename)
-{
-    std::fstream stream(filename);
-    if (!stream.good())
-    {
-        throw std::invalid_argument("File does not exist");
-    }
-    return generateFromStream(stream);
-}
+Sudoku readFile(const char *filename);
 
 } // namespace IO
 } /* namespace Sudoku */

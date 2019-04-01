@@ -3,6 +3,8 @@ INCLUDE_DIRECTORIES(
     ${PROJECT_BINARY_DIR}
 )
 
+add_subdirectory(src)
+
 INSTALL(
     DIRECTORY src
     DESTINATION include/sudokuSolver
