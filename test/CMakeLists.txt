@@ -13,6 +13,7 @@ set(TESTS
     SudokuBaseTest
     SudokuReadFileTest
     SudokuRecursionTest
+    SudokuEmptyTest
   )
 
 foreach(TEST_NAME ${TESTS})

@@ -18,7 +18,6 @@ namespace Solver
 class BaseSolver
 {
 public:
-  BaseSolver() = default;
   /**
      * Initialise using a Sudoku
      */

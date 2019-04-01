@@ -2,7 +2,6 @@
 #define SUDOKU_SOLVER_RECURSION_HPP
 
 #include "BaseSolver.hpp"
-#include "../base/SudokuBase.hpp"
 
 namespace Sudoku
 {
@@ -22,6 +21,7 @@ public:
  * @brief Initialize with given Sudoku
  */
   RecursionSolver(Sudoku s);
+
   Sudoku solve();
 
 private:

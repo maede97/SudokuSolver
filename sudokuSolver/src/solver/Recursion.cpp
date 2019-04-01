@@ -28,6 +28,7 @@ bool RecursionSolver::SolveRecursively()
         if (_sudoku.checkValidity(row, col, num))
         {
             _sudoku.addEntry(row, col, num);
+
             if (SolveRecursively())
                 return true;
             _sudoku.removeEntry(row, col);

@@ -1,9 +1,6 @@
-
-
 #ifndef SUDOKU_SUDOKU_BASE_HPP
 #define SUDOKU_SUDOKU_BASE_HPP
 
-#include <Eigen/Dense>
 #include <string>
 #include <stdexcept>
 
@@ -13,117 +10,115 @@
 namespace Sudoku
 {
 
-using idx_t = short int;                     ///< index type
-using val_t = short int;                     ///< value type
-using Sudoku_t = Eigen::Matrix<val_t, 9, 9>; ///< internal type
-using Block_t = Eigen::Matrix<val_t, 3, 3>;
-using Row_t = Eigen::Matrix<val_t, 9, 1>;
-
-/**
- * @brief Count empty entries in the given Block
- * @param b block to check
- * @return amount of empty cells
- */
-idx_t countEmpty(Block_t b);
-
-/**
- * @brief Count empty entries in the given Sudoku
- * @param s Sudoku to check
- * @return amount of empty cells
- */
-idx_t countEmpty(Sudoku_t s);
+using idx_t = short int;  ///< index type
+using val_t = short int;  ///< value type
+using Sudoku_t = val_t *; ///< internal type
 
 /**
  * @brief Internal Sudoku representation
  */
 class Sudoku
 {
-  public:
-    /// @brief Generate empty sudoku
-    Sudoku();
+public:
 
-    /**
+  Sudoku(const Sudoku& other);
+
+  /// @brief Generate empty sudoku
+  Sudoku();
+
+  ~Sudoku();
+
+  /**
+    * @brief Count empty entries in the Sudoku
+    * @return amount of empty cells
+    */
+  idx_t countEmpty() const;
+
+  /**
+    * @brief Get value at position
+    * @param row index of row
+    * @param col index of col
+    * @return value at position
+    */
+  val_t operator()(idx_t row, idx_t col) const;
+
+  /**
+    * @brief Get value at position
+    * @param row index of row
+    * @param col index of col
+    * @return value at position
+    */
+  val_t get(idx_t row, idx_t col) const;
+
+  /**
+    * @brief Count empty entries in the given Block
+    * @param row row index of block
+    * @param col col index of block
+    * @return amount of empty cells
+    */
+  idx_t countEmpty(idx_t row, idx_t col) const;
+
+  /**
      * @brief add a new entry
      * @param row index of row
      * @param col index of column
      * @param value number at this position
      * @return Wheter we could add the variable
      */
-    bool addEntry(idx_t row, idx_t col, val_t value);
+  bool addEntry(idx_t row, idx_t col, val_t value);
 
-    /**
+  /**
      * @brief Check validity
      * @return Wheter the given value will be valid at this position
      * @param row index of row
      * @param col index of col
      * @param value value to check
      */
-    bool checkValidity(idx_t row, idx_t col, val_t value);
-    /**
-     * @brief get value at position
-     * @param row index of row
-     * @param col index of column
-     * @return value at given position, 0 if not set
-     */
-    val_t get(idx_t row, idx_t col) const;
+  bool checkValidity(idx_t row, idx_t col, val_t value);
 
-    /**
+  /**
      * @brief remove entry at position
      * @param row index of row
      * @param col index of column
      */
-    void removeEntry(idx_t row, idx_t col);
+  void removeEntry(idx_t row, idx_t col);
 
-    /**
+  /**
      * @brief check if Sudoku is empty at position
      * @param row index of row
      * @param col index of col
      * @return whether Sudoku is empty there
      */
-    bool hasEntry(idx_t row, idx_t col) const;
-    /**
-     * @brief Get the 3x3 block for a specific entry
-     * @param row index of row
-     * @param col index of column
-     * @return block in which this entry lies
-     */
-    Block_t getBlockForEntry(idx_t row, idx_t col) const;
-    /**
-     * @brief Get the 3x3 block using block indices
-     * @param row index of row
-     * @param col index of column
-     * @return block using block-indices
-     */
-    Block_t getBlockFromIndex(idx_t row, idx_t col) const;
+  bool hasEntry(idx_t row, idx_t col) const;
 
-  private:
-    /**
+private:
+  /**
      * @brief check if all sudoku constraints hold
      */
-    bool check() const;
+  bool check() const;
 
-    /**
+  /**
      * @brief check if all sudoku constraints hold (for given entry)
      * @return whether check went well
      */
-    bool check(idx_t row, idx_t col) const;
+  bool check(idx_t row, idx_t col) const;
 
-    /**
+  /**
      * @brief check if value is in bounds (1-9)
      * @param value value to check
      * @return whether check went well
      */
-    bool checkRange(val_t value) const;
+  inline bool checkRange(val_t value) const;
 
-    /**
+  /**
      * @brief check if position is empty
      * @param row index of row
      * @param col index of column
      * @return whether check went well
      */
-    bool checkValueExist(idx_t row, idx_t col) const;
+  inline bool checkValueExist(idx_t row, idx_t col) const;
 
-    Sudoku_t _matrix; ///< internal representation of sudoku
+  Sudoku_t _matrix; ///< internal representation of sudoku
 };
 
 } /* namespace Sudoku */
