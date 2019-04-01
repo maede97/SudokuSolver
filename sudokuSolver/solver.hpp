@@ -2,7 +2,6 @@
 #define SUDOKU_SOLVER_HPP
 
 #include "src/solver/BaseSolver.hpp"
-#include "src/solver/BruteForce.hpp"
 #include "src/solver/Recursion.hpp"
 
 #endif /* SUDOKU_SOLVER_HPP */

@@ -19,22 +19,38 @@ using Sudoku_t = Eigen::Matrix<val_t, 9, 9>; ///< internal type
 using Block_t = Eigen::Matrix<val_t, 3, 3>;
 using Row_t = Eigen::Matrix<val_t, 9, 1>;
 
-
-idx_t countEmpty(Block_t b) {
+/**
+ * @brief Count empty entries in the given Block
+ * @param b block to check
+ * @return amount of empty cells
+ */
+idx_t countEmpty(Block_t b)
+{
     idx_t count = 0;
-    for(idx_t i = 0; i < 3; i++) {
-        for(idx_t j = 0; j < 3; j++) {
-            if(b(i,j) == 0) count++;
+    for (idx_t i = 0; i < 3; i++)
+    {
+        for (idx_t j = 0; j < 3; j++)
+        {
+            if (b(i, j) == 0)
+                count++;
         }
     }
     return count;
 }
 
-idx_t countEmpty(Sudoku_t s) {
+/**
+ * @brief Count empty entries in the given Sudoku
+ * @param s Sudoku to check
+ * @return amount of empty cells
+ */
+idx_t countEmpty(Sudoku_t s)
+{
     idx_t count = 0;
-    for(idx_t i = 0; i < 3; i++) {
-        for(idx_t j = 0; j < 3; j++) {
-            Block_t b = s.block(i * 3, j*3, 3, 3);
+    for (idx_t i = 0; i < 3; i++)
+    {
+        for (idx_t j = 0; j < 3; j++)
+        {
+            Block_t b = s.block(i * 3, j * 3, 3, 3);
             count += countEmpty(b);
         }
     }
@@ -57,34 +73,50 @@ class Sudoku
      * @param row index of row
      * @param col index of column
      * @param value number at this position
+     * @return Wheter we could add the variable
      */
     bool addEntry(idx_t row, idx_t col, val_t value)
     {
-        if(!checkValueExist(row, col)) return false; // check if already a value there
-        if(!checkRange(value)) return false; // value in [1,9]
+        if (!checkValueExist(row, col))
+            return false; // check if already a value there
+        if (!checkRange(value))
+            return false;          // value in [1,9]
         _matrix(row, col) = value; // set value
-        if(!check(row, col)) {
+        if (!check(row, col))
+        {
             _matrix(row, col) = 0; // remove value
             return false;
         }
         return true;
     }
 
-    bool checkValidity(idx_t row, idx_t col, val_t value) {
-        if(!checkValueExist(row, col)) return false; // check if already a value there
-        if(!checkRange(value)) return false; // value in [1,9]
+    /**
+     * @brief Check validity
+     * @return Wheter the given value will be valid at this position
+     * @param row index of row
+     * @param col index of col
+     * @param value value to check
+     */
+    bool checkValidity(idx_t row, idx_t col, val_t value)
+    {
+        if (!checkValueExist(row, col))
+            return false; // check if already a value there
+        if (!checkRange(value))
+            return false;          // value in [1,9]
         _matrix(row, col) = value; // set value
-        if(!check(row, col)) {
+        if (!check(row, col))
+        {
             _matrix(row, col) = 0; // remove value
             return false;
         }
-        _matrix(row, col) = 0; // reset 
+        _matrix(row, col) = 0; // reset
         return true;
     }
     /**
      * @brief get value at position
      * @param row index of row
      * @param col index of column
+     * @return value at given position, 0 if not set
      */
     val_t get(idx_t row, idx_t col) const
     {
@@ -102,13 +134,21 @@ class Sudoku
         _matrix(row, col) = 0;
     }
 
-    bool hasEntry(idx_t row, idx_t col) {
+    /**
+     * @brief check if Sudoku is empty at position
+     * @param row index of row
+     * @param col index of col
+     * @return whether Sudoku is empty there
+     */
+    bool hasEntry(idx_t row, idx_t col)
+    {
         return !(_matrix(row, col) == 0);
     }
     /**
      * @brief Get the 3x3 block for a specific entry
      * @param row index of row
      * @param col index of column
+     * @return block in which this entry lies
      */
     Block_t getBlockForEntry(idx_t row, idx_t col)
     {
@@ -120,18 +160,11 @@ class Sudoku
      * @brief Get the 3x3 block using block indices
      * @param row index of row
      * @param col index of column
+     * @return block using block-indices
      */
     Block_t getBlockFromIndex(idx_t row, idx_t col) const
     {
         return _matrix.block(row * 3, col * 3, 3, 3);
-    }
-
-    Sudoku_t getData() const {
-        return _matrix;
-    }
-
-    void setData(Sudoku_t data) {
-        _matrix = data;
     }
 
   private:
@@ -144,7 +177,8 @@ class Sudoku
         {
             for (idx_t j = 0; j < 9; j++)
             {
-                if(check(i, j) == false) return false;
+                if (check(i, j) == false)
+                    return false;
             }
         }
         return true;
@@ -152,6 +186,7 @@ class Sudoku
 
     /**
      * @brief check if all sudoku constraints hold (for given entry)
+     * @return whether check went well
      */
     bool check(idx_t row, idx_t col) const
     {
@@ -191,6 +226,7 @@ class Sudoku
     /**
      * @brief check if value is in bounds (1-9)
      * @param value value to check
+     * @return whether check went well
      */
     bool checkRange(val_t value) const
     {
@@ -205,6 +241,7 @@ class Sudoku
      * @brief check if position is empty
      * @param row index of row
      * @param col index of column
+     * @return whether check went well
      */
     bool checkValueExist(idx_t row, idx_t col) const
     {

@@ -12,7 +12,6 @@ link_directories(
 set(TESTS
     SudokuBase
     SudokuReadFile
-    SudokuBruteForce
     SudokuRecursion
   )
 
