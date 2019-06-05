@@ -1,0 +1,4 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$classSudoku_1_1Solver_1_1BaseSolver.html" title="Abstract Base class for all solvers. " alt="" coords="5,12,192,39"/>
+<area shape="rect" id="node2" href="$classSudoku_1_1Solver_1_1RecursionSolver.html" title="Recursion approach " alt="" coords="240,5,419,46"/>
+</map>
