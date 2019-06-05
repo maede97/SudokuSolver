@@ -18,7 +18,7 @@ std::ostream &operator<<(std::ostream &os, const Sudoku::Sudoku rhs)
             {
                 os << '|';
             }
-            os << ' ' << rhs(i, j) << ' ';
+            os << ' ' << static_cast<int>(rhs(i, j)) << ' ';
         }
         os << '|' << std::endl;
     }

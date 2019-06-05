@@ -17,23 +17,32 @@ namespace Solver
  */
 class BaseSolver
 {
-public:
-  /**
-     * Initialise using a Sudoku
+ public:
+   /**
+     * @brief Initialise using a Sudoku
+     * @param s The Sudoku to solve
      */
-  BaseSolver(Sudoku s);
-  ~BaseSolver() = default;
-  /**
-     * Solve the given Sudoku
-     */
-  virtual Sudoku solve() = 0;
-  /**
-     * Returns the solved Sudoku
-     */
-  Sudoku getSudoku() const;
+   BaseSolver(Sudoku s);
 
-protected:
-  Sudoku _sudoku;
+   /**
+   * @brief using default destructor
+   */
+   ~BaseSolver() = default;
+
+   /**
+     * @brief Solve Sudoku
+     * @return Solved Sudoku
+     */
+   virtual Sudoku solve() = 0;
+
+   /**
+     * @brief get the Sudoku back
+     * @return Sudoku
+     */
+   Sudoku getSudoku() const;
+
+ protected:
+   Sudoku _sudoku;
 };
 
 } /* namespace Solver */

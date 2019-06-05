@@ -3,11 +3,14 @@
 namespace Sudoku
 {
 
-Sudoku::Sudoku(const Sudoku& other) {
+Sudoku::Sudoku(const Sudoku &other)
+{
     _matrix = new val_t[81];
-    for(idx_t i = 0; i < 9; i++) {
-        for(idx_t j = 0; j < 9; j++) {
-            _matrix[i*9+j] = other._matrix[i*9+j];
+    for (idx_t i = 0; i < 9; i++)
+    {
+        for (idx_t j = 0; j < 9; j++)
+        {
+            _matrix[i * 9 + j] = other._matrix[i * 9 + j];
         }
     }
 }
@@ -52,11 +55,13 @@ Sudoku::~Sudoku()
 
 bool Sudoku::addEntry(idx_t row, idx_t col, val_t value)
 {
-    if (checkValueExist(row, col)) {
+    if (checkValueExist(row, col))
+    {
         return false; // check if already a value there
     }
-    if (!checkRange(value)) {
-        return false;               // value in [1,9]
+    if (!checkRange(value))
+    {
+        return false; // value in [1,9]
     }
     _matrix[row * 9 + col] = value; // set value
     if (!check(row, col))
@@ -146,12 +151,6 @@ inline bool Sudoku::checkRange(val_t value) const
     return (value >= 1 && value <= 9);
 }
 
-/**
-     * @brief check if position is empty
-     * @param row index of row
-     * @param col index of column
-     * @return whether check went well
-     */
 inline bool Sudoku::checkValueExist(idx_t row, idx_t col) const
 {
     return (_matrix[row * 9 + col] != 0);

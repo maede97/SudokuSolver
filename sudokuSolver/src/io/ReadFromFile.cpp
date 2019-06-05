@@ -11,7 +11,7 @@ namespace IO
 Sudoku readStream(std::istream &stream)
 {
     Sudoku s;
-    val_t value;
+    short int value;
     for (idx_t i = 0; i < 9; i++)
     {
         for (idx_t j = 0; j < 9; j++)
@@ -19,7 +19,7 @@ Sudoku readStream(std::istream &stream)
             stream >> value;
             if (value != 0)
             {
-                s.addEntry(i, j, value);
+                s.addEntry(i, j, static_cast<val_t>(value));
             }
         }
     }

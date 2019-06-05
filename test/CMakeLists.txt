@@ -14,6 +14,7 @@ set(TESTS
     SudokuReadFileTest
     SudokuRecursionTest
     SudokuEmptyTest
+    Run
   )
 
 foreach(TEST_NAME ${TESTS})

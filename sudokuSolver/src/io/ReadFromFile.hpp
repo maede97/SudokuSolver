@@ -13,14 +13,17 @@ namespace IO
 {
 
 /**
- * @brief Contains all functions for reading files
+ * @brief Generate Sudoku from given stream
+ * @param stream The stream to read from
+ * @return Sudoku
  */
-
-/// @brief Generate Sudoku from given stream
 Sudoku readStream(std::istream &stream);
 
-/// @brief Generate Sudoku from File
-Sudoku readFile(const char *filename);
+/**
+ * @brief Generate Sudoku from given filename
+ * @param filename The filename to read from
+ * @return Sudoku
+ */Sudoku readFile(const char *filename);
 
 } // namespace IO
 } /* namespace Sudoku */

@@ -10,8 +10,8 @@
 namespace Sudoku
 {
 
-using idx_t = short int;  ///< index type
-using val_t = short int;  ///< value type
+using idx_t = unsigned char;  ///< index type
+using val_t = unsigned char;  ///< value type
 using Sudoku_t = val_t *; ///< internal type
 
 /**
@@ -26,6 +26,7 @@ public:
   /// @brief Generate empty sudoku
   Sudoku();
 
+   /// @brief Deconstruct everything, even the world
   ~Sudoku();
 
   /**
