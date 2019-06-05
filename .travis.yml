@@ -1,7 +1,8 @@
 sudo: false
 branches:
-  except:
-    - gh-pages
+  only:
+    - master
+
 os: linux
 dist: trusty
 
@@ -36,8 +37,10 @@ script:
   - cd build;
   - cmake ..;
   - make
-
-after_success:
-  - cd $TRAVIS_BUILD_DIR
-  - chmod +x generateDocumentationAndDeploy.sh
-  - ./generateDocumentationAndDeploy.sh
+deploy:
+  provider: pages
+  skip_cleanup: true
+  local_dir: doc/html
+  github_token: $GH_REPO_TOKEN
+  on:
+    branch: master
