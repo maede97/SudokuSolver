@@ -11,7 +11,12 @@ addons:
       - doxygen-latex
       - doxygen-gui
       - graphviz
-
+      
+env:
+  global:
+    - GH_REPO_NAME: SudokuSolver
+    - DOXYFILE: $TRAVIS_BUILD_DIR/doc/Doxygen.in
+    - GH_REPO_REF: github.com/maede97/SudokuSolver.git
 
 script:
   - mkdir build;
