@@ -2,10 +2,20 @@ sudo: false
 branches:
   except:
     - gh-pages
+os: linux
+dist: trusty
+
+language: cpp
+compiler: gcc
 
 addons:
   apt:
+    update: true
+    sources:
+      - ubuntu-toolchain-r-test
     packages:
+      - g++-8
+      - gcc-8
       - doxygen
       - doxygen-doc
       - doxygen-latex
@@ -19,6 +29,8 @@ env:
     - GH_REPO_REF: github.com/maede97/SudokuSolver.git
 
 script:
+  - export CC=gcc-8;
+  - export CXX=g++-8;
   - gcc -v;
   - mkdir build;
   - cd build;
